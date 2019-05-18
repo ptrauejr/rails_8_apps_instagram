@@ -1,5 +1,5 @@
 class PicsController < ApplicationController
-  before_action :find_pic, only: [:show, :edit, :update, :destroy]
+  before_action :find_pic, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @pics = Pic.all.order("created_at DESC")
@@ -31,6 +31,11 @@ class PicsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @pic.destroy
+    redirect_to root_path
   end
 
   private
